@@ -128,8 +128,16 @@ class Article extends Controller{
 		return $this->fetch();
 	}
 	public function readbytag($tag){
-		$articles=Db::query('select * from javaj_article where id= any(select article_id from javaj_article_tag_access where tag_id= any (select id from javaj_tag where title=?))',[$tag]);
-		dump($articles);
+		// $articles1=Db::query('select  from javaj_article where id= any(select article_id from javaj_article_tag_access where tag_id= any (select id from javaj_tag where title=?))',[$tag]);
+		$articleids=Db::query('select article_id from javaj_article_tag_access where tag_id= any (select id from javaj_tag where title=?)',[$tag]);
+		// dump($articles1);
+		//dump(array_column($articles1,'article_id'));//该函数要求php>5.5.0
+		// dump(array_map('reset',$articles1));
+		$articles=ArticleModel::all(array_map('reset',$articleids));
+		 $this->assign('list',$articles);
+		 $this->assign('tag',$tag);
+		 $this->assign('count',count($articles));
+		return $this->fetch();
 	}
 	public function readbycomment($commentid){
 	}

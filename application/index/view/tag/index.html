@@ -1,0 +1,9 @@
+		{include file="tag/head" /}
+		<h2>标签管理（{$count}）</h2>
+			{volist name="list" id="tag"}
+			<div class="info">
+				ID:{$tag.id}<br/>
+				关键字:<a href="../article/readbytag/tag/{$tag.title}">{$tag.title}</a><br/>
+			</div>
+			{/volist}
+		{include file="tag/foot"/}
