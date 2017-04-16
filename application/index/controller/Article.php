@@ -108,7 +108,8 @@ class Article extends Controller{
 	//4查
 	public function read($id){
 		if($article=ArticleModel::get($id)){
-			dump($article);
+			$this->assign('article',$article);
+			return $this->fetch();
 		}else{
 			return '该文章不存在';
 		}
