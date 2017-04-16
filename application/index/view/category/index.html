@@ -1,0 +1,15 @@
+		{include file="category/head" /}
+		<h2>日志分类（{$categorycount}）</h2>
+			{volist name="categorylist" id="category"}
+			<div class="info">
+				ID:{$category.id}<br/>
+				分类名称:
+				<a href="../article/readbycategory/categoryid/{$category.id}">
+				{$category.name}
+				</a>
+				<br/>
+				<a href="edit/id/{$category.id}">编辑</a>
+				<a href="delete/id/{$category.id}">删除</a>
+			</div>
+			{/volist}
+		{include file="category/foot"/}

@@ -1,0 +1,8 @@
+{include file="category/head"/}
+		<form method="post" action="{:url('index/category/update')}">
+			<input type="hidden" name="id" value="{$category.id}"></input><br/>
+			分类名：<input type="text" name="name" value="{$category.name}"></input><br/>
+			<input type="submit"></input>
+		</form>
+
+{include file="category/foot"/}

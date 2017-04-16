@@ -1,0 +1,13 @@
+{include file="article/head"/}
+		<form method="post" action="{:url('index/article/update')}">
+			<input type="hidden" name="id" value="{$article.id}"></input>
+			标题<input type="text" name="title" value="{$article.title}"></input><br/>
+			正文<textarea name="content">{$article.content}</textarea><br/>
+			状态<input type="text" name="status" value="{$article.status}"></input><br/>
+			作者<input type="text" name="user_id" value="{$article.user_id}"></input><br/>
+			分类<input type="text" name="category_id" value="{$article.category_id}"></input><br/>
+			关键字<input type="text" name="tags" value="{$article.tags}"></input><br/>
+			<input type="submit"></input>
+		</form>
+
+{include file="article/foot"/}
