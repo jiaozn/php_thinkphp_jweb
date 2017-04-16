@@ -8,7 +8,8 @@ use app\index\model\User as UserModel;
 use app\index\model\Ugroup as UgroupModel;
 use think\Request;
 use think\Controller;
-
+use think\Db;
+use think\Session;
 class User extends Controller{
 	public function index(){
 		$userlist=UserModel::all();
@@ -67,7 +68,23 @@ class User extends Controller{
 		$this->assign('ugroup',$ugroup);
 		return $this->fetch();
 	}
-	
+	public function login(){
+		return $this->fetch();
+	}
+	public function check(){
+			$vip=UserModel::get(['username'=>$_POST['username'],'password'=>$_POST['password']]);
+			// dump($vip);
+			if($vip!=null){
+				Session::set('vip',$vip);
+				return '登录成功';
+			}else{
+				return '登录失败！';
+			}
+	}
+	public function logout(){
+		Session::set('vip',null);
+		return '登出成功';
+	}
 	
 }
 ?>
