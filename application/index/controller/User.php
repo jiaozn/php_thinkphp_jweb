@@ -5,8 +5,10 @@ use app\index\model\Category as CategoryModel;
 use app\index\model\Tag as TagModel;
 use app\index\model\Comment as CommentModel;
 use app\index\model\User as UserModel;
+use app\index\model\Ugroup as UgroupModel;
 use think\Request;
 use think\Controller;
+
 class User extends Controller{
 	public function index(){
 		$userlist=UserModel::all();
@@ -56,6 +58,14 @@ class User extends Controller{
 		$user=new UserModel;
 		$user->allowField(true)->save(input('post.'));
 		return '新增成功！';
+	}
+	public function readbyugroup($ugroupid){
+		$user=UserModel::all(['ugroup_id'=>$ugroupid]);
+		$ugroup=UgroupModel::get($ugroupid);
+		$this->assign('userlist',$user);
+		$this->assign('usercount',count($user));
+		$this->assign('ugroup',$ugroup);
+		return $this->fetch();
 	}
 	
 	

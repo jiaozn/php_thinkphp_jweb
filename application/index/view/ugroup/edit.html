@@ -1,0 +1,8 @@
+{include file="ugroup/head"/}
+		<form method="post" action="{:url('index/ugroup/update')}">
+			<input type="hidden" name="id" value="{$ugroup.id}"></input>
+			用户名：<input type="text" name="ugroupname" value="{$ugroup.ugroupname}"></input><br/>
+			<input type="submit"></input>
+		</form>
+
+{include file="ugroup/foot"/}
