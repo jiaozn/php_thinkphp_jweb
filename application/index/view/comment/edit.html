@@ -1,0 +1,9 @@
+{include file="comment/head"/}
+		<form method="post" action="{:url('index/comment/update')}">
+			<input type="hidden" name="id" value="{$comment.id}"></input>
+			内容<textarea name="content">{$comment.content}</textarea><br/>
+			作者<input type="text" name="user_id" value="{$comment.user_id}"></input><br/>
+			<input type="submit"></input>
+		</form>
+
+{include file="comment/foot"/}

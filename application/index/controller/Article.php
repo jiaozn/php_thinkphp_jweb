@@ -3,6 +3,7 @@ namespace app\index\controller;
 use app\index\model\Article as ArticleModel;
 use app\index\model\Tag as TagModel;
 use app\index\model\Category as CategoryModel;
+use app\index\model\Comment as CommentModel;
 use think\Controller;
 use think\Session;
 use think\Db;
@@ -109,6 +110,8 @@ class Article extends Controller{
 	public function read($id){
 		if($article=ArticleModel::get($id)){
 			$this->assign('article',$article);
+			$comments=CommentModel::all(['comment_id'=>$id]);
+			$this->assign('comments',$comments);
 			return $this->fetch();
 		}else{
 			return '该文章不存在';

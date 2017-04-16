@@ -14,11 +14,6 @@ create table if not exists `javaj_article`(
 
 
 	
-drop table if exists `javaj_article_comment_access`;	
-create table if not exists `javaj_article_comment_access`(
-`article_id` int(11) unsigned,
-`comment_id` int(11) unsigned
-) engine=myisam default charset=utf8 comment='日志-评论-中间表';
 
 
 
@@ -95,7 +90,7 @@ drop table if exists `javaj_comment`;
 create table if not exists `javaj_comment`(
 	`id` int(11) unsigned not null auto_increment comment 'ID',
 	`content` text comment '内容',
-	`user_id` int(11)  not null comment '评论人',
+	`user_id` int(11)  not null default '1' comment '评论人',
 	`comment_id` int(11) comment '我评论的哪个评论',
  	`create_time` int(10) unsigned not null default '0' comment '创建时间',
 	`update_time` int(10) unsigned not null default '0' comment '更新时间',

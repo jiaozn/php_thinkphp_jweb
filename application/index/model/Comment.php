@@ -1,16 +1,24 @@
 <?php
 namespace app\index\model;
+use app\index\model\Article as ArticleModel;
 use think\Model;
+use think\Db;
 class Comment extends Model{
 	//自动设置create_time\update_time
 	protected $autoWriteTimestamp=true;
-		//定义文章-评论 多对多
-	public function articles(){
-		return $this->belongsToMany('Article','javaj_article_comment_access');
+	
+		//定义username读取器
+	protected function getUsernameAttr($value,$data){
+		//dump($data);
+		$username=Db::query('select username from javaj_user where id=?',[$data['user_id']]);
+		return $username[0]['username'];
 	}
-		//定义user和comment之间的一对多
-	public function User(){
-		return $this->belongsTo('User');
+			//定义commentto读取器
+	protected function getCommenttoAttr($value,$data){
+		//dump($data);
+		$commentto=ArticleModel::get($data['comment_id']);
+		return $commentto;
 	}
+	
 }
 ?>

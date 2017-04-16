@@ -21,7 +21,7 @@ class User extends Controller{
 			$this->assign('user',$user);
 			return $this->fetch();
 		}else{
-			return '该文章不存在';
+			return '该用户不存在';
 		}
 	
 	}	

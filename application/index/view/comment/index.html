@@ -1,0 +1,16 @@
+		{include file="comment/head" /}
+		<h2>评论列表（{$count}）</h2>
+			{volist name="list" id="comment"}
+			<div class="info">
+				ID:{$comment.id}<br/>
+				内容:{$comment.content}<br/>
+				作者:<a href="../user/read/id/{$comment.user_id}">{$comment.username}</a><br/>
+				评论对象:<a href="../article/read/id/{$comment.comment_id}">{$comment.commentto.title}</a><br/>
+				时间:{$comment.create_time}<br/>
+				修改时间:{$comment.update_time}<br/>
+				<a href="edit/id/{$comment.id}">编辑</a>
+				<a href="delete/id/{$comment.id}">删除</a>
+				
+			</div>
+			{/volist}
+		{include file="comment/foot"/}
