@@ -14,6 +14,12 @@ class Article extends Controller{
 		return $this->fetch();
 	}
 	public function add(){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>3){
+			return '权限不够！';
+		}
 		$article=new ArticleModel;
 		$article->allowField(true)->save(input('post.'));
 		//以上，标题、状态、正文、作者、分类均已解决，剩关键字待处理
@@ -37,6 +43,12 @@ class Article extends Controller{
 	
 	//2删
 	public function delete($id){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		//评论删除
 		//$article->comments()->delete();
 		//关键字，要看该关键字还有没有其他的关联，有则保留。没有则删除
@@ -54,12 +66,24 @@ class Article extends Controller{
 	}
 	//3改
 	public function edit($id){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>3){
+			return '权限不够！';
+		}
 		$article=ArticleModel::get($id);
 		$this->assign('article',$article);
 		return $this->fetch();
 	}
 			
 	public function update(){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		$tagarrori1=Db::query('select title from javaj_tag where id= any (select tag_id from javaj_article_tag_access where article_id=?)',[$_POST['id']]);
 		$article=ArticleModel::get($_POST['id']);
 		$article->title=$_POST['title'];
@@ -124,10 +148,12 @@ class Article extends Controller{
 	}
 	
 	public function readbycategory($categoryid){
-		$articles=ArticleModel::all(['category_id'=>$categoryid]);
+		// $articles=ArticleModel::all(['category_id'=>$categoryid]);
+		$articles=ArticleModel::where(['category_id'=>$categoryid])->paginate(5);
+		$count=ArticleModel::where(['category_id'=>$categoryid])->count();
 		$category=CategoryModel::get($categoryid);
 		$this->assign('category',$category);
-		$this->assign('count',count($articles));
+		$this->assign('count',$count);
 		$this->assign('list',$articles);
 		return $this->fetch();
 	}
@@ -149,9 +175,11 @@ class Article extends Controller{
 	//组合
 	
 	public function index(){
-		$list=ArticleModel::all();
+		$list=ArticleModel::paginate(5);
+		// $list=ArticleModel::all();
+		$count=ArticleModel::count();
 		$this->assign('list',$list);
-		$this->assign('count',count($list));
+		$this->assign('count',$count);
 		return $this->fetch();
 	}
 }

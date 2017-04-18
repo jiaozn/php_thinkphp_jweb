@@ -8,6 +8,7 @@ use app\index\model\User as UserModel;
 use think\Request;
 use think\Controller;
 use think\Db;
+use think\Session;
 class Category extends Controller{
 	public function index(){
 		$categorylist=CategoryModel::all();
@@ -17,14 +18,32 @@ class Category extends Controller{
 	}
 	
 	public function input(){
+		if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		return $this->fetch();
 	}
 	public function add(){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		$category=new CategoryModel;
 		$category->allowField(true)->save(input('post.'));
 		return '新增成功！';
 	}
 	public function delete($id){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>1){
+			return '权限不够！';
+		}
 		if($id==1){
 			return '默认分类不允许删除';
 		}
@@ -34,11 +53,23 @@ class Category extends Controller{
 		return '删除分类成功';
 	}
 	public function edit($id){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		$category=CategoryModel::get($id);
 		$this->assign('category',$category);
 		return $this->fetch();
 	}
 	public function update(){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		$category=CategoryModel::get($_POST['id']);
 		$category->name=$_POST['name'];
 		$category->save();

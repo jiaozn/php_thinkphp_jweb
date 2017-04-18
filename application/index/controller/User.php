@@ -12,6 +12,12 @@ use think\Db;
 use think\Session;
 class User extends Controller{
 	public function index(){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		$userlist=UserModel::all();
 		$this->assign('userlist',$userlist);
 		$this->assign('usercount',count($userlist));
@@ -27,11 +33,23 @@ class User extends Controller{
 	
 	}	
 	public function edit($id){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		$user=UserModel::get($id);
 		$this->assign('user',$user);
 		return $this->fetch();
 	}
 	public function update(){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		$user=UserModel::get($_POST['id']);
 		$user->password=$_POST['password'];
 		$user->username=$_POST['username'];
@@ -53,6 +71,12 @@ class User extends Controller{
 		return '暂不提供删除';
 	}
 	public function input(){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		return $this->fetch();
 	}
 	public function add(){
@@ -61,6 +85,12 @@ class User extends Controller{
 		return '新增成功！';
 	}
 	public function readbyugroup($ugroupid){
+			if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
 		$user=UserModel::all(['ugroup_id'=>$ugroupid]);
 		$ugroup=UgroupModel::get($ugroupid);
 		$this->assign('userlist',$user);

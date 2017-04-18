@@ -12,9 +12,11 @@ use think\Controller;
 class Tag extends Controller{
 	
 	public function index(){
-		$list=TagModel::all();
+		// $list=TagModel::all();
+		$list=TagModel::paginate(15);
+		$count=TagModel::count();
 		$this->assign('list',$list);
-		$this->assign('count',count($list));
+		$this->assign('count',$count);
 		return $this->fetch();
 	}
 }
