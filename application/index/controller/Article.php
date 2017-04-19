@@ -24,13 +24,11 @@ class Article extends Controller{
 		return $this->fetch();
 	}
 	public function add(){
-		
 		$logs=new LogsModel;
 		$logs->from=LogsModel::getIp();
 		$logs->to=$this->request->url();
 		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
 		$logs->save();
-		
 		
 		
 			if(!Session::get('vip')){
