@@ -1,7 +1,18 @@
 		{include file="article/head" /}
+		
+
+		{load href="__ROOT__/ckeditor/ckeditor.js" /}
 		<form method="post" action="{:url('index/article/add')}">
 			标题<input type="text" name="title"></input><br/>
-			正文<textarea name="content"></textarea><br/>
+			正文<textarea name="content"  id="editor1"></textarea><br/>
+			
+			<script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+            </script>
+			
+			
 			<input type="hidden" name="status" value="1"></input>
 				<input type="hidden" name="user_id" value={$Think.session.vip.id}></input>
 			分类

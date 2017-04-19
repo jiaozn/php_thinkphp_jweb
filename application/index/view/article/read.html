@@ -37,10 +37,15 @@
 					<br/>
 				{/volist}
 				<hr/>
-			
+			{load href="__ROOT__/ckeditor/ckeditor.js" /}
 			<form method="post" action="{:url('index/comment/add')}">
 			<input type="hidden" name="comment_id" value="{$article.id}"></input>
-			评论*<textarea name="content"></textarea><br/>
+			评论*<textarea name="content" id="editor1"></textarea><br/>
+					<script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+            </script>
 			{if condition="$Think.session.vip.ugroup_id==0"}
 			<input type="hidden" name="user_id" value="4"></input>
 			{else/}
