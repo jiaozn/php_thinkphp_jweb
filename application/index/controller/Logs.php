@@ -22,6 +22,14 @@ class Logs extends Controller{
 		$logs->save();
 		
 		
+		if(!Session::get('vip')){
+			return '权限不够！';
+		}
+		if(Session::get('vip')->ugroup_id>2){
+			return '权限不够！';
+		}
+		
+		
 		
 		$list=LogsModel::paginate(20);
 		$count=LogsModel::count();
