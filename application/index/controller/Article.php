@@ -181,6 +181,9 @@ class Article extends Controller{
 		
 		
 		if($article=ArticleModel::get($id)){
+			
+			$article->vtimes=$article->vtimes+1;
+			$article->save();
 			$this->assign('article',$article);
 			$comments=CommentModel::all(['comment_id'=>$id]);
 			$this->assign('comments',$comments);

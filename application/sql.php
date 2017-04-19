@@ -9,6 +9,7 @@ create table if not exists `javaj_article`(
 	`status` tinyint(1) not null default '0' comment '发表状态',
 	`user_id` int(11) not null default '2' comment '作者',
 	`category_id` int(4) not null default '1' comment '分类',
+	`vtimes` int(11) unsigned comment '访问次数',
 	primary key (`id`)
 ) engine=myisam default charset=utf8 comment='日志表';
 

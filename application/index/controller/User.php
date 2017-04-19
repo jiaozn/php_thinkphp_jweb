@@ -120,12 +120,7 @@ class User extends Controller{
 		
 		
 		
-			if(!Session::get('vip')){
-			return '权限不够！';
-		}
-		if(Session::get('vip')->ugroup_id>2){
-			return '权限不够！';
-		}
+			
 		return $this->fetch();
 	}
 	public function add(){
