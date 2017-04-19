@@ -1,0 +1,13 @@
+		{include file="user/head" /}
+		<h2>用户列表-分组：{$ugroup.ugroupname}（{$usercount}）</h2>
+			{volist name="userlist" id="user"}
+			<div class="info">
+				ID:{$user.id}<br/>
+				用户名:<a href="../../read/id/{$user.id}">{$user.username}</a><br/>
+				姓名:{$user.name}<br/>
+				用户组：{$user.ugroupname}<br/>
+				<a href="../../edit/id/{$user.id}">编辑</a>
+				
+			</div>
+			{/volist}
+		{include file="user/foot"/}

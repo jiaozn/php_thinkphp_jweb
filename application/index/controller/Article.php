@@ -7,13 +7,32 @@ use app\index\model\Comment as CommentModel;
 use think\Controller;
 use think\Session;
 use think\Db;
+use app\index\model\Logs as LogsModel;
 
 class Article extends Controller{
 	//1.增
 	public function input(){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 		return $this->fetch();
 	}
 	public function add(){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -43,6 +62,15 @@ class Article extends Controller{
 	
 	//2删
 	public function delete($id){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -66,6 +94,16 @@ class Article extends Controller{
 	}
 	//3改
 	public function edit($id){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -132,6 +170,16 @@ class Article extends Controller{
 	
 	//4查
 	public function read($id){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
+		
 		if($article=ArticleModel::get($id)){
 			$this->assign('article',$article);
 			$comments=CommentModel::all(['comment_id'=>$id]);
@@ -143,11 +191,31 @@ class Article extends Controller{
 	}
 	
 	public function readbyuser($userid){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 		$articles=Db::query('select * from javaj_article where user_id=?',[$userid]);
 		dump($articles);
 	}
 	
 	public function readbycategory($categoryid){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 		// $articles=ArticleModel::all(['category_id'=>$categoryid]);
 		$articles=ArticleModel::where(['category_id'=>$categoryid])->paginate(5);
 		$count=ArticleModel::where(['category_id'=>$categoryid])->count();
@@ -158,6 +226,15 @@ class Article extends Controller{
 		return $this->fetch();
 	}
 	public function readbytag($tag){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 		// $articles1=Db::query('select  from javaj_article where id= any(select article_id from javaj_article_tag_access where tag_id= any (select id from javaj_tag where title=?))',[$tag]);
 		$articleids=Db::query('select article_id from javaj_article_tag_access where tag_id= any (select id from javaj_tag where title=?)',[$tag]);
 		// dump($articles1);
@@ -175,6 +252,16 @@ class Article extends Controller{
 	//组合
 	
 	public function index(){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
+		
 		$list=ArticleModel::paginate(5);
 		// $list=ArticleModel::all();
 		$count=ArticleModel::count();

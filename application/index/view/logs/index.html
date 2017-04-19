@@ -1,0 +1,14 @@
+		{include file="logs/head" /}
+		<h2>访问记录（{$count}）</h2>
+			{volist name="list" id="log"}
+			<div class="info">
+				ID:{$log.id}<br/>
+				IP:{$log.from}</a><br/>
+				To:{$log.to}</a><br/>
+				用户:{$log.user_id}</a><br/>
+				访问时间:{$log.create_time}</a><br/>
+						
+			</div>
+			{/volist}
+				{$list->render()}
+		{include file="logs/foot"/}

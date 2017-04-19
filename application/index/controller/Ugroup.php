@@ -8,9 +8,19 @@ use app\index\model\User as UserModel;
 use app\index\model\Ugroup as UgroupModel;
 use think\Request;
 use think\Controller;
-
+use app\index\model\Logs as LogsModel;
+use think\Session;
 class Ugroup extends Controller{
 	public function index(){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -23,6 +33,15 @@ class Ugroup extends Controller{
 		return $this->fetch();
 	}
 	public function edit($id){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -34,6 +53,16 @@ class Ugroup extends Controller{
 		return $this->fetch();
 	}
 	public function update(){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}

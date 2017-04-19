@@ -1,0 +1,22 @@
+		{include file="user/head" /}
+		<h2>用户信息（{$user.username}）</h2>
+			<div class="info">
+				ID:{$user.id}<br/>
+				用户名:{$user.username}<br/>
+				姓名:{$user.name}<br/>
+				年龄:{$user.age}<br/>
+				性别:{$user.sex}<br/>
+				生日:{$user.birthday}<br/>
+				国家:{$user.country}<br/>
+				qq:{$user.qq}<br/>
+				婚否:{$user.single}<br/>
+				邮箱:{$user.email}<br/>
+				个人主页:{$user.web}<br/>
+				自我介绍:{$user.introduce}<br/>
+				创建时间:{$user.create_time}<br/>
+				更新时间:{$user.update_time}<br/>
+				用户组:{$user.ugroup_id}<br/>
+				<a href="../../edit/id/{$user.id}">编辑</a>
+				
+			</div>
+		{include file="user/foot"/}

@@ -10,8 +10,18 @@ use think\Request;
 use think\Controller;
 use think\Db;
 use think\Session;
+use app\index\model\Logs as LogsModel;
 class User extends Controller{
 	public function index(){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -24,6 +34,15 @@ class User extends Controller{
 		return $this->fetch();
 	}
 	public function read($id){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 		if($user=UserModel::get($id)){
 			$this->assign('user',$user);
 			return $this->fetch();
@@ -33,6 +52,14 @@ class User extends Controller{
 	
 	}	
 	public function edit($id){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -44,6 +71,16 @@ class User extends Controller{
 		return $this->fetch();
 	}
 	public function update(){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -68,9 +105,21 @@ class User extends Controller{
 		return '更新成功';
 	}
 	public function delete($id){
+		
+		
+		
 		return '暂不提供删除';
 	}
 	public function input(){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -80,11 +129,32 @@ class User extends Controller{
 		return $this->fetch();
 	}
 	public function add(){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 		$user=new UserModel;
 		$user->allowField(true)->save(input('post.'));
 		return '新增成功！';
 	}
 	public function readbyugroup($ugroupid){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -99,9 +169,27 @@ class User extends Controller{
 		return $this->fetch();
 	}
 	public function login(){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 		return $this->fetch();
 	}
 	public function check(){
+		
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 			$vip=UserModel::get(['username'=>$_POST['username'],'password'=>$_POST['password']]);
 			// dump($vip);
 			if($vip!=null){
@@ -112,6 +200,15 @@ class User extends Controller{
 			}
 	}
 	public function logout(){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 		Session::set('vip',null);
 		return '登出成功';
 	}

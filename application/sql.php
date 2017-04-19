@@ -98,4 +98,17 @@ create table if not exists `javaj_comment`(
 ) engine=myisam default charset=utf8 comment='日志评论表';
 
 
+drop table if exists `javaj_logs`;	
+create table if not exists `javaj_logs`(
+	`id` int(11) unsigned not null auto_increment comment 'ID',
+	`from` varchar(255) comment '用户Ip',
+	`to` varchar(255) comment '访问地址',
+	`user_id` int(11)  not null default '1' comment '用户id',
+	`create_time` int(10) unsigned not null default '0' comment '创建时间',
+	`update_time` int(10) unsigned not null default '0' comment '更新时间',
+	primary key (`id`)
+) engine=myisam default charset=utf8 comment='访问记录表';
 
+
+	
+	

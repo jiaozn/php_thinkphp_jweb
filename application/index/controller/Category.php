@@ -9,8 +9,19 @@ use think\Request;
 use think\Controller;
 use think\Db;
 use think\Session;
+use app\index\model\Logs as LogsModel;
 class Category extends Controller{
 	public function index(){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 		$categorylist=CategoryModel::all();
 		$this->assign('categorylist',$categorylist);
 		$this->assign('categorycount',count($categorylist));
@@ -18,6 +29,14 @@ class Category extends Controller{
 	}
 	
 	public function input(){
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 		if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -27,6 +46,15 @@ class Category extends Controller{
 		return $this->fetch();
 	}
 	public function add(){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -38,6 +66,16 @@ class Category extends Controller{
 		return '新增成功！';
 	}
 	public function delete($id){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -53,6 +91,16 @@ class Category extends Controller{
 		return '删除分类成功';
 	}
 	public function edit($id){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
@@ -64,6 +112,16 @@ class Category extends Controller{
 		return $this->fetch();
 	}
 	public function update(){
+		
+		
+		$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+		
+		
 			if(!Session::get('vip')){
 			return '权限不够！';
 		}
