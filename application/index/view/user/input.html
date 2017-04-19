@@ -6,15 +6,31 @@
 			密码*：<input type="password" name="password"></input><br/>
  			姓名：<input type="text" name="name" ></input><br/>
 			年龄：<input type="text" name="age" ></input><br/>
-			性别：<input type="text" name="sex" ></input><br/>
+			
+			性别：
+			<select name="sex">
+				<option value=1 >未知</option>
+				<option value=2 >男</option>
+				<option value=3 >女</option>
+			</select>
+			<br/>
+			
 			生日：<input type="text" name="birthday" ></input><br/>
 			国家：<input type="text" name="country" ></input><br/>
 			qq：<input type="text" name="qq" ></input><br/>
-			婚否：<input type="text" name="single" ></input><br/>
+			
+			婚否：
+			<select name="single">
+				<option value=1 >单身</option>
+				<option value=2 >热恋</option>
+				<option value=3 >已婚</option>
+			</select>
+			<br/>
+			
 			邮箱：<input type="text" name="email" ></input><br/>
 			主页：<input type="text" name="web" ></input><br/>
 			简介：<input type="text" name="introduce" ></input><br/>
-			用户组*：<input type="text" name="ugroup_id" ></input><br/>
+			<input type="hidden" name="ugroup_id" value="4"></input>
 			<input type="submit"></input>
 		</form>
 

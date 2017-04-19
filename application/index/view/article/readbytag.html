@@ -21,10 +21,14 @@
 						<a href="../../readbytag/tag/{$tag.title}">{$tag.title}</a>
 						{/volist}
 				<br/>
-				<a href="../../read/id/{$article.id}">查看</a>
-				<a href="../../edit/id/{$article.id}">编辑</a>
-				<a href="../../delete/id/{$article.id}">删除</a>
 				
+				<a href="../../read/id/{$article.id}">查看</a>
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+				<a href="../../edit/id/{$article.id}">编辑</a>
+				{/if}
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
+				<a href="../../delete/id/{$article.id}">删除</a>
+				{/if}
 			</div>
 			{/volist}
 				

@@ -6,8 +6,9 @@
 				用户名:<a href="../../read/id/{$user.id}">{$user.username}</a><br/>
 				姓名:{$user.name}<br/>
 				用户组：{$user.ugroupname}<br/>
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
 				<a href="../../edit/id/{$user.id}">编辑</a>
-				
+				{/if}
 			</div>
 			{/volist}
 		{include file="user/foot"/}

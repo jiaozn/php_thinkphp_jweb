@@ -12,9 +12,12 @@
 			创建时间：{$article.create_time}<br/>
 			更新时间：{$article.update_time}<br/>
 			阅读次数：{$article.vtimes}<br/>
+			{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
 				<a href="../../edit/id/{$article.id}">编辑</a>
+				{/if}
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
 				<a href="../../delete/id/{$article.id}">删除</a>
-				
+				{/if}
 				
 				<hr/>
 				评论：<br/>
@@ -25,15 +28,24 @@
 				评论对象:<a href="../../../article/read/id/{$comment.comment_id}">{$comment.commentto.title}</a><br/>
 				时间:{$comment.create_time}<br/>
 				修改时间:{$comment.update_time}<br/>
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
 				<a href="../../../comment/edit/id/{$comment.id}">编辑</a>
+					{/if}
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
 				<a href="../../../comment/delete/id/{$comment.id}">删除</a>
+					{/if}
+					<br/>
 				{/volist}
 				<hr/>
 			
 			<form method="post" action="{:url('index/comment/add')}">
 			<input type="hidden" name="comment_id" value="{$article.id}"></input>
 			评论*<textarea name="content"></textarea><br/>
-			作者*<input type="text" name="user_id" value="1"></input><br/>
+			{if condition="$Think.session.vip.ugroup_id==0"}
+			<input type="hidden" name="user_id" value="4"></input>
+			{else/}
+			<input type="hidden" name="user_id" value="{$Think.session.vip.id}"></input>
+			{/if}
 			<input type="submit"></input>
 		</form>
 {include file="article/foot"/}

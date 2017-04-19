@@ -6,8 +6,9 @@
 				分组名:<a href="../user/readbyugroup/ugroupid/{$ugroup.id}">{$ugroup.ugroupname}</a><br/>
 				创建时间:{$ugroup.create_time}<br/>
 				更新时间：{$ugroup.update_time}<br/>
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
 				<a href="edit/id/{$ugroup.id}">编辑</a>
-				
+						{/if}
 			</div>
 			{/volist}
 		{include file="ugroup/foot"/}

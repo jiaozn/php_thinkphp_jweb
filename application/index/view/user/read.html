@@ -5,18 +5,47 @@
 				用户名:{$user.username}<br/>
 				姓名:{$user.name}<br/>
 				年龄:{$user.age}<br/>
-				性别:{$user.sex}<br/>
+				性别:
+				{if condition="($user.sex==1) or ($user.sex==0)" }
+				未知
+				{elseif condition="($user.sex==2)"}
+				男
+				{elseif condition="($user.sex==3)"}
+				女
+				{/if}
+				<br/>
 				生日:{$user.birthday}<br/>
 				国家:{$user.country}<br/>
 				qq:{$user.qq}<br/>
-				婚否:{$user.single}<br/>
+				婚否:
+				{if condition="($user.single==1)" }
+				单身
+				{elseif condition="($user.single==2)"}
+				热恋
+				{elseif condition="($user.single==3)"}
+				已婚
+				{/if}
+				<br/>
 				邮箱:{$user.email}<br/>
 				个人主页:{$user.web}<br/>
 				自我介绍:{$user.introduce}<br/>
 				创建时间:{$user.create_time}<br/>
 				更新时间:{$user.update_time}<br/>
-				用户组:{$user.ugroup_id}<br/>
-				<a href="../../edit/id/{$user.id}">编辑</a>
+				用户组:
+				{if condition="($user.ugroup_id==1)" }
+				超级管理员
+				{elseif condition="($user.ugroup_id==2)"}
+				管理员
+				{elseif condition="($user.ugroup_id==3)"}
+				用户
+				{elseif condition="($user.ugroup_id==4)"}
+				游客
+				{/if}
+				<br/>
 				
+				
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+				<a href="../../edit/id/{$user.id}">编辑</a>
+					{/if}
 			</div>
 		{include file="user/foot"/}

@@ -8,8 +8,12 @@
 				{$category.name}
 				</a>
 				<br/>
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
 				<a href="edit/id/{$category.id}">编辑</a>
+				{/if}
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
 				<a href="delete/id/{$category.id}">删除</a>
+				{/if}
 			</div>
 			{/volist}
 		{include file="category/foot"/}

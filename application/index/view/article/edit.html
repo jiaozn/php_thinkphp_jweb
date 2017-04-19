@@ -3,9 +3,19 @@
 			<input type="hidden" name="id" value="{$article.id}"></input>
 			标题<input type="text" name="title" value="{$article.title}"></input><br/>
 			正文<textarea name="content">{$article.content}</textarea><br/>
-			状态<input type="text" name="status" value="{$article.status}"></input><br/>
-			作者<input type="text" name="user_id" value="{$article.user_id}"></input><br/>
-			分类<input type="text" name="category_id" value="{$article.category_id}"></input><br/>
+			<input type="hidden" name="status" value="{$article.status}"></input>
+			<input type="hidden" name="user_id" value="{$article.user_id}"></input>
+			
+			
+			分类
+			<select name="category_id">
+				{volist name="categorys" id="category"}
+				<option value={$category.id} selected="{$category.id==$article.category_id?'selected':''}">{$category.id}.{$category.name}</option>
+				{/volist}
+			</select>
+			<br/>
+			
+			
 			关键字<input type="text" name="tags" value="{$article.tags}"></input><br/>
 			<input type="submit"></input>
 		</form>

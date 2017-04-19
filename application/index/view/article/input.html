@@ -2,9 +2,15 @@
 		<form method="post" action="{:url('index/article/add')}">
 			标题<input type="text" name="title"></input><br/>
 			正文<textarea name="content"></textarea><br/>
-			状态<input type="text" name="status"></input><br/>
+			<input type="hidden" name="status" value="1"></input>
 				<input type="hidden" name="user_id" value={$Think.session.vip.id}></input>
-			分类<input type="text" name="category_id"></input><br/>
+			分类
+			<select name="category_id">
+				{volist name="categorys" id="category"}
+				<option value={$category.id}>{$category.id}.{$category.name}</option>
+				{/volist}
+			</select>
+			<br/>
 			关键字<input type="text" name="tags"></input><br/>
 			<input type="submit"></input>
 		</form>

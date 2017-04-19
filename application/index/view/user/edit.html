@@ -5,15 +5,39 @@
 			密码：<input type="text" name="password" value="{$user.password}"></input><br/>
 			姓名：<input type="text" name="name" value="{$user.name}"></input><br/>
 			年龄：<input type="text" name="age" value="{$user.age}"></input><br/>
-			性别：<input type="text" name="sex" value="{$user.sex}"></input><br/>
+			
+			性别：
+			<select name="sex">
+				<option value=1 selected="{$user.sex==1?'selected':''}">未知</option>
+				<option value=2 selected="{$user.sex==2?'selected':''}">男</option>
+				<option value=3 selected="{$user.sex==3?'selected':''}">女</option>
+			</select>
+			<br/>
 			生日：<input type="text" name="birthday" value="{$user.birthday}"></input><br/>
 			国家：<input type="text" name="country" value="{$user.country}"></input><br/>
 			qq：<input type="text" name="qq" value="{$user.qq}"></input><br/>
-			婚否：<input type="text" name="single" value="{$user.single}"></input><br/>
+			婚否：
+			<select name="single">
+				<option value=1 selected="{$user.single==1?'selected':''}">单身</option>
+				<option value=2 selected="{$user.single==2?'selected':''}">热恋</option>
+				<option value=3 selected="{$user.single==3?'selected':''}">已婚</option>
+			</select>
+			<br/>
+			
 			邮箱：<input type="text" name="email" value="{$user.email}"></input><br/>
 			主页：<input type="text" name="web" value="{$user.web}"></input><br/>
 			简介：<input type="text" name="introduce" value="{$user.introduce}"></input><br/>
-			用户组：<input type="text" name="ugroup_id" value="{$user.ugroup_id}"></input><br/>
+			
+			{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+			用户组：<select name="ugroup_id">
+				<option value=1 selected="{$user.ugroup_id==1?'selected':''}">超级管理员</option>
+				<option value=2 selected="{$user.ugroup_id==2?'selected':''}">管理员</option>
+				<option value=3 selected="{$user.ugroup_id==3?'selected':''}">用户</option>
+				<option value=4 selected="{$user.ugroup_id==4?'selected':''}">游客</option>
+			</select>
+			<br/>
+			
+			{/if}
 			<input type="submit"></input>
 		</form>
 

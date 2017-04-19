@@ -21,6 +21,9 @@ class Article extends Controller{
 		$logs->save();
 		
 		
+		$categorys=CategoryModel::all();
+		$this->assign('categorys',$categorys);
+		
 		return $this->fetch();
 	}
 	public function add(){
@@ -110,6 +113,12 @@ class Article extends Controller{
 		}
 		$article=ArticleModel::get($id);
 		$this->assign('article',$article);
+		
+		
+			$categorys=CategoryModel::all();
+		$this->assign('categorys',$categorys);
+		
+		
 		return $this->fetch();
 	}
 			
