@@ -1,10 +1,40 @@
 		{include file="tag/head" /}
-		<h2>标签管理（{$count}）</h2>
-			{volist name="list" id="tag"}
-			<div class="info">
-				ID:{$tag.id}<br/>
-				关键字:<a href="../article/readbytag/tag/{$tag.title}">{$tag.title}</a><br/>
+			<div id="mainleft">
+					<h3 class="ptitle">关键字（{$tagcount}）</h3>
+						<div class="tag">
+											<div id="tagcontent">
+											{volist name="taglist" id="tag"}
+											
+													<a href="article-readbytag-tag-{$tag.title}.html" class="nodec">{$tag.title}</a>
+											
+											{/volist}
+														<div class="pwrap">
+																	<div id="pagination">
+														{$taglist->render()}
+																	</div>
+														</div>
+															<!-- .pwrap -->
+											</div>
+											<!-- .tagcontent -->
+						</div>
+											
 			</div>
-			{/volist}
-			{$list->render()}
+			<!-- .mainleft -->
+			<div id="mainright">
+										<div id="category">
+												<h3>分类（{$categorycount}）</h3>
+												{volist name="categorylist" id="category"}
+												<a href="article-readbycategory-categoryid-{$category.id}.html" class="nodec">
+												{$category.name}
+												</a>
+												<br/>
+												{/volist}
+										</div>
+										<!-- #category -->
+			</div>
+		
+		
+		
+		
+			
 		{include file="tag/foot"/}

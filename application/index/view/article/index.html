@@ -1,34 +1,54 @@
 		{include file="article/head" /}
-		<h2>博客列表（{$count}）</h2>
+		<div id="mainleft">
+		<h3 class="ptitle">博客列表（{$count}）</h3>
 			{volist name="list" id="article"}
-			<div class="info">
-				ID:{$article.id}<br/>
-				标题:
-				<a href="read/id/{$article.id}">
-				{$article.title}
-				</a>
-				<br/>
-				作者:<a href="readbyuser/userid/{$article.user_id}">{$article.username}</a><br/>
-				时间:{$article.create_time}<br/>
-				修改时间:{$article.update_time}<br/>
-				分类:
-				<a href="readbycategory/categoryid/{$article.category_id}">
-				{$article.categoryname}
-				</a>
-				<br/>
-				关键字:
-						{volist name="article.tagsarr" id="tag"}
-						<a href="readbytag/tag/{$tag.title}">{$tag.title}</a>
-						{/volist}
-				<br/>
-				<a href="read/id/{$article.id}">查看</a>
-					{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
-				<a href="edit/id/{$article.id}">编辑</a>
-					{/if}
-					{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
-				<a href="delete/id/{$article.id}">删除</a>
-					{/if}
-			</div>
+				<div class="article">
+									<h2 class="atitle"><a href="article-read-id-{$article.id}.html" class="nodec">{$article.title}</a></h2>
+									<div class="divcontent"><p class="alcontent">{$article.content}</p></div>
+									<!-- <div style='width:120px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;' title='鼠标悬浮显示的内容'>鼠标悬浮显示的内容</div>  -->
+									
+									<span class="awriter">by <a href="article-readbyuser-userid-{$article.user_id}.html" class="nodec">{$article.username}</a></span>
+									<span class="atime">{$article.create_time}</span>
+									<span class="acategory">分类：<a href="article-readbycategory-categoryid-{$article.category_id}.html" class="nodec">{$article.categoryname}</a></span>
+									<span class="akey">关键字:
+									{volist name="article.tagsarr" id="tag"}
+									<a href="article-readbytag-tag-{$tag.title}.html" class="nodec">{$tag.title}</a>
+											{/volist}
+									</span>
+										{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+									<a href="article-edit-id-{$article.id}.html" class="nodec">编辑</a>
+										{/if}
+										{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
+									<a href="article-delete-id-{$article.id}.html" class="nodec">删除</a>
+										{/if}
+				</div>
+				<!-- .article -->
 			{/volist}
-			{$list->render()}
+					<div class="pwrap">
+						<div id="pagination">
+						{$list->render()}
+						</div>
+					</div>
+					<!-- .pwrap -->
+			</div>
+			<!-- .mainleft -->
+			<div id="mainright">
+										<div id="category">
+												<h2>分类（{$categorycount}）</h2>
+												{volist name="categorylist" id="category"}
+												<a href="article-readbycategory-categoryid-{$category.id}.html" class="nodec">
+												{$category.name}
+												</a>
+												<br/>
+												{/volist}
+										</div>
+										<!-- #category -->
+										<div id="tag">
+												<h2>关键字（{$tagcount}）</h2>
+												{volist name="taglist" id="tag"}
+												<a href="article-readbytag-tag-{$tag.title}.html" rel="nofollow" class="nodec">{$tag.title}</a>
+												{/volist}
+										</div>
+			</div>
+			
 		{include file="article/foot"/}

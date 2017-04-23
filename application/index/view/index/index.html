@@ -1,4 +1,35 @@
 		{include file="index/head" /}
-		<h2>你好，世界</h2>
-		<p>这是第{$ucount}次访问</p>
+		
+		<div id="main">
+							<div id="mainleft">
+								<div class="article">
+										<h2 class="atitle">你好，世界</h2>
+										<div class="divcontent"><p class="alcontent">这是首页内容。<br/>
+										PHP-><a href="#">php</a></p></div>
+								</div>
+								<!-- .atitle -->
+								
+							</div>
+							<div id="mainright">
+										<div id="category">
+												<h2>分类（{$categorycount}）</h2>
+												{volist name="categorylist" id="category"}
+												<a href="article-readbycategory-categoryid-{$category.id}.html" class="nodec">
+												{$category.name}
+												</a>
+												<br/>
+												{/volist}
+										</div>
+										<!-- #category -->
+										<div id="tagcontent">
+												<h2>关键字（{$tagcount}）</h2>
+												{volist name="taglist" id="tag"}
+												<a href="article-readbytag-tag-{$tag.title}.html" rel="nofollow" class="nodec">{$tag.title}</a>
+												{/volist}
+										</div>
+							</div>
+		</div>
+		<!-- .main -->
+		
+		<div id="pbottom"><p class="pbottom">这是第{$ucount}次访问</p></div>
 		{include file="index/foot"/}

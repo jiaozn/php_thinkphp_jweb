@@ -1,12 +1,6 @@
 <?php
 namespace app\index\controller;
-use app\index\model\Article as ArticleModel;
-use app\index\model\Category as CategoryModel;
-use app\index\model\Tag as TagModel;
-use app\index\model\Comment as CommentModel;
-use app\index\model\User as UserModel;
 use app\index\model\Ugroup as UgroupModel;
-use think\Request;
 use think\Controller;
 use app\index\model\Logs as LogsModel;
 use think\Session;

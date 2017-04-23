@@ -1,11 +1,7 @@
 <?php
 namespace app\index\controller;
-use app\index\model\Article as ArticleModel;
-use app\index\model\Category as CategoryModel;
 use app\index\model\Tag as TagModel;
-use app\index\model\Comment as CommentModel;
-use app\index\model\User as UserModel;
-use think\Request;
+use app\index\model\Category as CategoryModel;
 use think\Controller;
 use app\index\model\Logs as LogsModel;
 use think\Session;
@@ -22,12 +18,15 @@ class Tag extends Controller{
 		$logs->save();
 		
 		
+		$categorylist=CategoryModel::all();
+		$this->assign('categorylist',$categorylist);
+		$this->assign('categorycount',count($categorylist));
 		
 		// $list=TagModel::all();
-		$list=TagModel::paginate(15);
+		$list=TagModel::order('id desc')->paginate(15);
 		$count=TagModel::count();
-		$this->assign('list',$list);
-		$this->assign('count',$count);
+		$this->assign('taglist',$list);
+		$this->assign('tagcount',$count);
 		return $this->fetch();
 	}
 }

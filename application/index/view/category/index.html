@@ -1,19 +1,28 @@
 		{include file="category/head" /}
-		<h2>日志分类（{$categorycount}）</h2>
-			{volist name="categorylist" id="category"}
-			<div class="info">
-				ID:{$category.id}<br/>
-				分类名称:
-				<a href="../article/readbycategory/categoryid/{$category.id}">
-				{$category.name}
-				</a>
-				<br/>
-				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
-				<a href="edit/id/{$category.id}">编辑</a>
-				{/if}
-				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
-				<a href="delete/id/{$category.id}">删除</a>
-				{/if}
+		<div id="mainleft">
+					<h3 class="ptitle">日志分类（{$categorycount}）</h3>
+					
+						{volist name="categorylist" id="category"}
+						<div class="category">
+							<a href="article-readbycategory-categoryid-{$category.id}.html" class="nodec">
+							{$category.name}
+							</a>
+							{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
+							<a href="category-edit-id-{$category.id}.html" class="nodec">编辑</a>
+							{/if}
+							{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
+							<a href="category-delete-id-{$category.id}.html" class="nodec">删除</a>
+							{/if}
+						</div>
+						{/volist}
 			</div>
-			{/volist}
+			<!-- .mainleft -->
+			<div id="mainright">
+										<div id="tagcontent">
+												<h3>关键字（{$tagcount}）</h3>
+												{volist name="taglist" id="tag"}
+												<a href="article-readbytag-tag-{$tag.title}.html" rel="nofollow" class="nodec">{$tag.title}</a>
+												{/volist}
+										</div>
+			</div>
 		{include file="category/foot"/}

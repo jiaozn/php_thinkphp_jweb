@@ -4,30 +4,30 @@
 			<div class="info">
 				ID:{$article.id}<br/>
 				标题:
-				<a href="../../read/id/{$article.id}">
+				<a href="article-read-id-{$article.id}.html">
 				{$article.title}
 				</a>
 				<br/>
-				作者:<a href="../../readbyuser/userid/{$article.user_id}">{$article.username}</a><br/>
+				作者:<a href="article-readbyuser-userid-{$article.user_id}.html">{$article.username}</a><br/>
 				时间:{$article.create_time}<br/>
 				修改时间:{$article.update_time}<br/>
 				分类:
-				<a href="../../readbycategory/categoryid/{$article.category_id}">
+				<a href="article-readbycategory-categoryid-{$article.category_id}.html">
 				{$article.categoryname}
 				</a>
 				<br/>
 				关键字:
 						{volist name="article.tagsarr" id="tag"}
-						<a href="../../readbytag/tag/{$tag.title}">{$tag.title}</a>
+						<a href="article-readbytag-tag-{$tag.title}.html">{$tag.title}</a>
 						{/volist}
 				<br/>
 				
-				<a href="../../read/id/{$article.id}">查看</a>
+				<a href="article-read-id-{$article.id}.html">查看</a>
 				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
-				<a href="../../edit/id/{$article.id}">编辑</a>
+				<a href="article-edit-id-{$article.id}.html">编辑</a>
 				{/if}
 				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
-				<a href="../../delete/id/{$article.id}">删除</a>
+				<a href="article-delete-id-{$article.id}.html">删除</a>
 				{/if}
 			</div>
 			{/volist}

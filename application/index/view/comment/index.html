@@ -1,0 +1,55 @@
+{include file="comment/head" /}
+							<div id="mainleft">
+												<h3 class="ptitle">评论列表（{$count}）</h3>
+												{volist name="list" id="comment"}
+												<div class="comment">
+														<div><p class="alcontent">{$comment.content}</p></div>
+														<span class="awriter">by <a href="user-read-id-{$comment.user_id}.html" class="nodec">{$comment.username}</a></span>
+														<span class="awriter">To:<a href="article-read-id-{$comment.comment_id}.html" class="nodec">{$comment.commentto.title}</a></span>
+														<span class="atime">{$comment.create_time}</span>
+														{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+														<a href="comment-edit-id-{$comment.id}.html" class="nodec">编辑</a>
+														{/if}
+														{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
+														<a href="comment-delete-id-{$comment.id}.html" class="nodec">删除</a>
+														{/if}
+												</div>
+												{/volist}
+												<div class="pwrap">
+														<div id="pagination">
+															{$list->render()}
+														</div>
+												</div>
+												<!-- .pwrap -->
+							</div>
+							<div id="mainright">
+										<div id="category">
+												<h2>分类（{$categorycount}）</h2>
+												{volist name="categorylist" id="category"}
+												<a href="article-readbycategory-categoryid-{$category.id}.html" class="nodec">
+												{$category.name}
+												</a>
+												<br/>
+												{/volist}
+										</div>
+										<!-- #category -->
+										<div id="tagcontent">
+												<h2>关键字（{$tagcount}）</h2>
+												{volist name="taglist" id="tag"}
+												<a href="article-readbytag-tag-{$tag.title}.html" rel="nofollow" class="nodec">{$tag.title}</a>
+												{/volist}
+										</div>
+							</div>
+		</div>
+		<!-- .main -->
+
+
+
+
+
+
+
+
+
+ 		
+ 		{include file="comment/foot"/} 

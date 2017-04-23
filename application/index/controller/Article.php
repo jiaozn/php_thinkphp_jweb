@@ -247,10 +247,15 @@ class Article extends Controller{
 		
 		// $articles1=Db::query('select  from javaj_article where id= any(select article_id from javaj_article_tag_access where tag_id= any (select id from javaj_tag where title=?))',[$tag]);
 		$articleids=Db::query('select article_id from javaj_article_tag_access where tag_id= any (select id from javaj_tag where title=?)',[$tag]);
+		// dump($articleids);
+		// dump(array_map('reset',$articleids));
 		// dump($articles1);
 		//dump(array_column($articles1,'article_id'));//该函数要求php>5.5.0
 		// dump(array_map('reset',$articles1));
-		$articles=ArticleModel::all(array_map('reset',$articleids));
+		
+		$map['id']=array('in',array_map('reset',$articleids));
+		// $articles=ArticleModel::where(array_map('reset',$articleids))->select();
+		$articles=ArticleModel::where($map)->order('id desc')->select();
 		 $this->assign('list',$articles);
 		 $this->assign('tag',$tag);
 		 $this->assign('count',count($articles));
@@ -269,10 +274,18 @@ class Article extends Controller{
 		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
 		$logs->save();
 		
+		$categorylist=CategoryModel::all();
+		$this->assign('categorylist',$categorylist);
+		$this->assign('categorycount',count($categorylist));
+		
+		$taglist=TagModel::paginate(20);
+		$tagcount=TagModel::count();
+		$this->assign('taglist',$taglist);
+		$this->assign('tagcount',$tagcount);
 		
 		
-		
-		$list=ArticleModel::paginate(5);
+		// $list=ArticleModel::paginate(5);
+		$list=ArticleModel::order('id','desc')->paginate(5);
 		// $list=ArticleModel::all();
 		$count=ArticleModel::count();
 		$this->assign('list',$list);

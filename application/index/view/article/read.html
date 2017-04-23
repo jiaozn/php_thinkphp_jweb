@@ -1,22 +1,91 @@
-{include file="article/head"/}
+<!DOCTYPE html>
+<html>
+		<head>
+		<meta charset="utf-8">
+			<title>{$article.title}</title>
+			
+			<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="Keywords" content="{$article.tags}" />
+<meta name="Description" content="" />			
+		</head>
+	<body>
+	<ul>
+		<li>
+				<ul>
+					<li><a href="{:url('index/index')}">主页</a></li>
+					<li><a href="{:url('article/index')}">博客首页（博客列表）</a></li>
+					<li><a href="{:url('category/index')}">日志分类</a></li>
+					
+					{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+					<li><a href="{:url('category/input')}">增加分类</a></li>
+					{/if}
+					
+					{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<4)"}
+					<li><a href="{:url('article/input')}">新增日志</a></li>
+					{/if}
+					<li><a href="{:url('tag/index')}">关键字</a></li>
+					
+					<li><a href="{:url('comment/index')}">查看评论</a></li>
+					
+				</ul>
+		</li>
+		<li>
+				<ul>
+				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+					<li><a href="{:url('user/index')}">用户列表</a></li>
+						{/if}
+					<li><a href="{:url('user/input')}">注册</a></li>
+					
+									{if condition="$Think.session.vip.ugroup_id==0"}
+					<li><a href="{:url('user/login')}">登录</a></li>
+						{/if}
+									{if condition="$Think.session.vip.ugroup_id!=0"}
+					<li><a href="{:url('user/logout')}">注销</a></li>
+						{/if}
+									{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+					<li><a href="{:url('ugroup/index')}">用户分组</a></li>
+						{/if}
+									{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+					<li><a href="{:url('logs/index')}">访问记录</a></li>
+						{/if}
+					
+				</ul>
+				
+		</li>
+	</ul>
+	{if condition="$Think.session.vip.ugroup_id==0"}
+	欢迎<a href="{:url('user/input')}">注册</a>&<a href="{:url('user/login')}">登录</a>
+	{else/}你好,{$Think.session.vip.username}!
+	{/if}
+<hr/>
+
+
+
+
+
+
+
+
+
 			ID:{$article.id}<br/>
 			标题:{$article.title}<br/>
 			正文:{$article.content}<br/>
 			状态:{$article.status}<br/>
-			作者:<a href="../../readbyuser/userid/{$article.user_id}">{$article.username}</a><br/>
-			分类:<a href="../../readbycategory/categoryid/{$article.category_id}">{$article.categoryname}</a><br/>
+			作者:<a href="article-readbyuser-userid-{$article.user_id}.html">{$article.username}</a><br/>
+			分类:<a href="article-readbycategory-categoryid-{$article.category_id}.html">{$article.categoryname}</a><br/>
 			关键字:
 			{volist name="article.tagsarr" id="tag"}
-			<a href="../../readbytag/tag/{$tag.title}">{$tag.title}</a>
+			<a href="article-readbytag-tag-{$tag.title}.html">{$tag.title}</a>
 			{/volist}<br/>
 			创建时间：{$article.create_time}<br/>
 			更新时间：{$article.update_time}<br/>
 			阅读次数：{$article.vtimes}<br/>
 			{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
-				<a href="../../edit/id/{$article.id}">编辑</a>
+				<a href="article-edit-id-{$article.id}.html">编辑</a>
 				{/if}
 				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
-				<a href="../../delete/id/{$article.id}">删除</a>
+				<a href="article-delete-id-{$article.id}.html">删除</a>
 				{/if}
 				
 				<hr/>
@@ -24,20 +93,20 @@
 				{volist name="comments" id="comment"}
 					ID:{$comment.id}<br/>
 				内容:{$comment.content}<br/>
-				作者:<a href="../../../user/read/id/{$comment.user_id}">{$comment.username}</a><br/>
-				评论对象:<a href="../../../article/read/id/{$comment.comment_id}">{$comment.commentto.title}</a><br/>
+				作者:<a href="user-read-id-{$comment.user_id}.html">{$comment.username}</a><br/>
+				评论对象:<a href="article-read-id-{$comment.comment_id}.html">{$comment.commentto.title}</a><br/>
 				时间:{$comment.create_time}<br/>
 				修改时间:{$comment.update_time}<br/>
 				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
-				<a href="../../../comment/edit/id/{$comment.id}">编辑</a>
+				<a href="comment-edit-id-{$comment.id}.html">编辑</a>
 					{/if}
 				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<2)"}
-				<a href="../../../comment/delete/id/{$comment.id}">删除</a>
+				<a href="comment-delete-id-{$comment.id}.html">删除</a>
 					{/if}
 					<br/>
 				{/volist}
 				<hr/>
-			{load href="__ROOT__/ckeditor/ckeditor.js" /}
+			{load href="__ROOT__/public/ckeditor/ckeditor.js" /}
 			<form method="post" action="{:url('index/comment/add')}">
 			<input type="hidden" name="comment_id" value="{$article.id}"></input>
 			评论*<textarea name="content" id="editor1"></textarea><br/>

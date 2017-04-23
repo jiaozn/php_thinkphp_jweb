@@ -1,55 +1,84 @@
+<!DOCTYPE html>
 <html>
 		<head>
-			<meta charset="UTF-8"></meta>
+		<meta charset="utf-8">
 			<title>article-index</title>
+			
+			<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+			
+			<link rel="stylesheet" type="text/css" href="__ROOT__/public/javajsm.css" media="screen and (max-device-width:900px)"/>
+			<link rel="stylesheet" type="text/css" href="__ROOT__/public/javaj.css" media="screen and (min-device-width:900px)"/>
 		</head>
 	<body>
-	<ul>
-		<li>
-				<ul>
-					<li><a href="{:url('index/index/index')}">主页</a></li>
-					<li><a href="{:url('index/article/index')}">博客首页（博客列表）</a></li>
-					<li><a href="{:url('index/category/index')}">日志分类</a></li>
-					
-					{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
-					<li><a href="{:url('index/category/input')}">增加分类</a></li>
-					{/if}
-					
-					{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<4)"}
-					<li><a href="{:url('index/article/input')}">新增日志</a></li>
-					{/if}
-					<li><a href="{:url('index/tag/index')}">关键字</a></li>
-					
-					<li><a href="{:url('index/comment/index')}">查看评论</a></li>
-					
-				</ul>
-		</li>
-		<li>
-				<ul>
-				{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
-					<li><a href="{:url('index/user/index')}">用户列表</a></li>
-						{/if}
-					<li><a href="{:url('index/user/input')}">注册</a></li>
-					
-									{if condition="$Think.session.vip.ugroup_id==0"}
-					<li><a href="{:url('index/user/login')}">登录</a></li>
-						{/if}
-									{if condition="$Think.session.vip.ugroup_id!=0"}
-					<li><a href="{:url('index/user/logout')}">注销</a></li>
-						{/if}
-									{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
-					<li><a href="{:url('index/ugroup/index')}">用户分组</a></li>
-						{/if}
-									{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
-					<li><a href="{:url('index/logs/index')}">访问记录</a></li>
-						{/if}
-					
-				</ul>
-				
-		</li>
-	</ul>
-	{if condition="$Think.session.vip.ugroup_id==0"}
-	欢迎<a href="{:url('index/user/input')}">注册</a>&<a href="{:url('index/user/login')}">登录</a>
-	{else/}你好,{$Think.session.vip.username}!
-	{/if}
-<hr/>
+	<div id="wrap">
+	<div id="header">
+			<div id="title">
+				林中鸟
+			</div>
+			<div id="vtitle">There's my hole,gotta fly!      --created by <span class="green">javaj</span>
+			</div>
+			<!-- .title -->
+			
+			<div id="menuico">
+							<div id="nav">
+										<ul id="navmenu">
+											<li><a href="{:url('index/index')}">主页</a></li>
+											<li><a href="#">博客</a>
+													<ul>
+														<li><a href="{:url('article/index')}">博客首页（博客列表）</a></li>
+														<li><a href="{:url('category/index')}">日志分类</a></li>
+														<li><a href="{:url('tag/index')}">关键字</a></li>
+														<li><a href="{:url('comment/index')}">查看评论</a></li>
+													</ul>
+											</li>
+											<li><a href="#">管理</a>
+													<ul>
+													{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+														<li><a href="{:url('user/index')}">用户列表</a></li>
+															{/if}
+														<li><a href="{:url('user/input')}">注册</a></li>
+														
+																		{if condition="$Think.session.vip.ugroup_id==0"}
+														<li><a href="{:url('user/login')}">登录</a></li>
+															{/if}
+																		{if condition="$Think.session.vip.ugroup_id!=0"}
+														<li><a href="{:url('user/logout')}">注销</a></li>
+															{/if}
+																		{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+														<li><a href="{:url('ugroup/index')}">用户分组</a></li>
+															{/if}
+																		{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+														<li><a href="{:url('logs/index')}">访问记录</a></li>
+															{/if}
+																{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<3)"}
+														<li><a href="{:url('category/input')}">增加分类</a></li>
+														{/if}
+														
+														{if condition="($Think.session.vip.ugroup_id>0) and ($Think.session.vip.ugroup_id<4)"}
+														<li><a href="{:url('article/input')}">新增日志</a></li>
+														{/if}
+														
+													</ul>
+													
+											</li>
+										</ul>
+							</div>
+							<!-- .nav -->
+			</div>
+			<!-- #menuico -->
+	</div>
+	<!-- .header -->
+	
+	
+	
+	<div id="sayhello">
+			{if condition="$Think.session.vip.ugroup_id==0"}
+			欢迎<a href="{:url('user/input')}">注册</a>&<a href="{:url('user/login')}">登录</a>
+			{else/}你好,{$Think.session.vip.username}!
+			{/if}
+	</div>
+	<!-- .sayhello -->
+	

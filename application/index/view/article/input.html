@@ -1,16 +1,12 @@
 		{include file="article/head" /}
 		
 
-		{load href="__ROOT__/ckeditor/ckeditor.js" /}
+		{load href="__ROOT__/public/ckeditor/ckeditor.js" /}
 		<form method="post" action="{:url('index/article/add')}">
 			标题<input type="text" name="title"></input><br/>
 			正文<textarea name="content"  id="editor1"></textarea><br/>
 			
-			<script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'editor1' );
-            </script>
+	
 			
 			
 			<input type="hidden" name="status" value="1"></input>
@@ -25,4 +21,9 @@
 			关键字<input type="text" name="tags"></input><br/>
 			<input type="submit"></input>
 		</form>
+				<script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+            </script>
 		{include file="article/foot"/}

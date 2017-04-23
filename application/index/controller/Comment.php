@@ -1,15 +1,11 @@
 <?php
 namespace app\index\controller;
-use app\index\model\Article as ArticleModel;
-use app\index\model\Category as CategoryModel;
-use app\index\model\Tag as TagModel;
 use app\index\model\Comment as CommentModel;
-use app\index\model\User as UserModel;
-use think\Request;
-use think\Db;
+use app\index\model\Category as CategoryModel;
 use think\Controller;
 use app\index\model\Logs as LogsModel;
 use think\Session;
+use app\index\model\Tag as TagModel;
 class Comment extends Controller{
 	public function index(){
 		
@@ -20,10 +16,17 @@ class Comment extends Controller{
 		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
 		$logs->save();
 		
+		$categorylist=CategoryModel::all();
+		$this->assign('categorylist',$categorylist);
+		$this->assign('categorycount',count($categorylist));
 		
+		$taglist=TagModel::paginate(20);
+		$tagcount=TagModel::count();
+		$this->assign('taglist',$taglist);
+		$this->assign('tagcount',$tagcount);
 		
 		// $list=CommentModel::all();
-		$list=CommentModel::paginate(15);
+		$list=CommentModel::order('id desc')->paginate(15);
 		$count=CommentModel::count();
 		$this->assign('list',$list);
 		$this->assign('count',$count);
