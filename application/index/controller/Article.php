@@ -292,5 +292,37 @@ class Article extends Controller{
 		$this->assign('count',$count);
 		return $this->fetch();
 	}
+	
+	public function search(){
+			$logs=new LogsModel;
+		$logs->from=LogsModel::getIp();
+		$logs->to=$this->request->url();
+		$logs->user_id=Session::get('vip')?Session::get('vip')['id']:1;
+		$logs->save();
+		
+				$categorylist=CategoryModel::all();
+		$this->assign('categorylist',$categorylist);
+		$this->assign('categorycount',count($categorylist));
+		
+		$taglist=TagModel::paginate(20);
+		$tagcount=TagModel::count();
+		$this->assign('taglist',$taglist);
+		$this->assign('tagcount',$tagcount);
+		
+		
+		// $list=ArticleModel::paginate(5);
+		$amap['content'] = array('like','%'.$_POST['keyword'].'%');
+		$amap['title']=array('like','%'.$_POST['keyword'].'%');
+	
+		
+// $list=ArticleModel::where("title like '%s' or content like '%s' ",$_POST['keyword'],$_POST['keyword'])->order('id','desc')->paginate(5);
+
+		$list=ArticleModel::whereOr($amap)->order('id','desc')->paginate(5);
+		// $list=ArticleModel::all();
+		$count=ArticleModel::whereOr($amap)->order('id','desc')->count();
+		$this->assign('list',$list);
+		$this->assign('count',$count);
+		return $this->fetch();
+	}
 }
 ?>

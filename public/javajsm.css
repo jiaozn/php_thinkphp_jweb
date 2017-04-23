@@ -41,7 +41,6 @@ html,body{
 	width:100%;
 	background-color:#3b5998;
 	display:none;
-	z-index:1;
 }
 #navmenu{
 	
@@ -129,6 +128,48 @@ background-color:#E8EBEE;
 	text-align:center;
 	padding:30px 0;
 }
+
+
+#searchbar{
+	position:absolute;
+	z-index:0;
+	width:80%;
+}
+#sform{
+	display:inline-block;
+	
+}
+#txform{
+	font-size:60px;
+	position:absolute;
+	top:-120px;
+	right:5em;
+	display:inline-block;
+	height:80px;
+	width:7em;
+	
+	
+}
+#btform {
+	font-size:60px;
+	position:absolute;
+	top:-120px;
+	right:0.1em;
+  background: #4267b2;
+  cursor: pointer;
+  color:#fff;
+  border:#29487D 2px solid;
+  margin:0px 0px 0px 0px;
+  font-weight:bold;
+  width:4em;
+  height:1.5em;
+  display:inline-block;
+  }
+  #btform:hover{
+	  background-color:#365899;
+  }
+  
+  
 .pwrap{
 	width:100%;
 	overflow:hidden;

@@ -23,7 +23,14 @@
 			<!-- .title -->
 			
 			<div id="menuico">
+					<div id="navwrap">
 							<div id="nav">
+												<div id="searchbar" class="d1">
+														<form method="post" action="{:url('article/search')}" id="sform">
+															<input type="text" name="keyword" id="txform"></input>
+															<input type="submit" value="搜索" id="btform"></input>
+														</form>
+												</div>
 										<ul id="navmenu">
 											<li><a href="{:url('index/index')}">主页</a></li>
 											<li><a href="#">博客</a>
@@ -65,8 +72,12 @@
 													
 											</li>
 										</ul>
+									
 							</div>
 							<!-- .nav -->
+									
+						</div>
+							<!-- #navwrap -->
 			</div>
 			<!-- #menuico -->
 	</div>

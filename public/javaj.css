@@ -15,7 +15,7 @@ html,body{
 
 #title{
 	font-size:40px;
-	padding:30px 0px 30px 40px;	
+	padding:30px 0px 20px 80px;	
 	word-spacing:3px;
 	letter-spacing:3px;
 	text-align:left;
@@ -28,7 +28,8 @@ html,body{
 	letter-spacing:1px;
 	text-align:left;
 }
-#nav{
+#navwrap{
+	position:relative;
 }
 #navmenu{
 	width:100%;
@@ -127,6 +128,35 @@ background-color:#E8EBEE;
 	text-align:center;
 	padding:30px 0;
 }
+#searchbar{
+	position:absolute;
+	top:7px;
+	right:40px;
+}
+#sform{
+	display:inline-block;
+	
+}
+#btform {
+  background: #4267b2;
+  cursor: pointer;
+  color:#fff;
+  border:#29487D 2px solid;
+  margin:0px 0px 0px 10px;
+  font-weight:bold;
+  width:6em;
+  height:2em;
+  }
+  #btform:hover{
+	  background-color:#365899;
+  }
+.d1 input {
+  border: 1px solid #000;
+  outline: none;
+  background: #fff;
+}
+
+
 .pwrap{
 	width:100%;
 	overflow:hidden;
